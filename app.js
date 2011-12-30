@@ -2,7 +2,7 @@ var fs  =require('fs');
 var http = require('http');
 var mongo = require('mongodb');
 
-var db = new mongo.Db('memebasedb', new mongo.Server("mongodb://root:CNf4fvwid9G2FAwiH894@memebasedb-cynicalgrinch-data-0.dotcloud.com", 20438));
+var db = new mongo.Db('memebasedb', new mongo.Server("mongodb://brand.magnate@gmail.com:p3rception@ds029317.mongolab.com", 29317));
 db.open();
 
 server = http.createServer( function(req, res) {
