@@ -19,38 +19,21 @@ canvas:hover { cursor: pointer; }
 }
 #topmemes {
     top: 3px;
-    right: 162px;
+    right: 214px;
     position: absolute;
 }
 
 #newmemes {
     top: 3px;
-    right: 266px;
+    right: 270px;
     position: absolute;
 }
-
-#experiment {
-    top: 3px;
-    right: 385px;
-    position: absolute;
-}
-
 #edit-info {
     color: red;
     padding: 0 5px;
 }
 #editor {
     margin-bottom: 10px;
-}
-
-#comments {
-  position: relative;
-  float: right;
-  border: 1px solid #000;
-  width: 15%;
-  margin-left: 0%;
-  margin-right: 1px;
-  padding: 0 8px;
 }
 </style>
 
@@ -118,7 +101,7 @@ $(document).ready(function(){
     }
 
     makeCanvas = function(doc) {
-        return ("<canvas class = 'well' rel = 'twipsy' data-original-title = '" + availableMemes[doc.name] + "' onclick = pickMeme('" + doc.name + "') width = '" + width + "' height = '" + height + "' style='padding: 10px;' id='" + doc._id + "'></canvas>");
+        return ("<canvas class = 'well' rel = 'twipsy' data-original-title = '" + availableMemes[doc.name] + "' onclick = pickMeme('" + doc.name + "') width = '" + width + "' height = '" + height + "' style='padding: 3px;' id='" + doc._id + "'></canvas>");
         
         $(function() {
             $("canvas[rel=twipsy]").twipsy( { live: true } );
@@ -213,44 +196,25 @@ $(document).ready(function(){
 
 <body style = "background-color: #FFFAFF;">
 
-<h1 style = "margin-left: 20px; margin-bottom: 30px"> 
-    <a href = "/" class = "alert-message error"> Memebase</a>
-	<small><font color="black">Express yourself through memes!</font></small>
-</h1> 
+<h1 style = "margin-left: 20px;"> 
+    <a href = "/" class = "alert-message error"> Memebase 
+        <small>Why not express yourself through a meme?</small>
+    </a>
+</h1>
 
 <div id = "follow_us">
     <a href = "https://www.twitter.com/memebase" target = "_blank" class = "alert-message warning">Follow us on Twitter</strong></a>
 </div>
 
-<div id = "experiment">
-    <a href = "/experiment.html" class = "alert-message info">Experimental memes</strong></a>
-</div>
-
 <div id = "topmemes">
-    <a href = "/index.html" class = "alert-message success">Top memes</strong></a>
+    <a href = "https://www.twitter.com/memebase" target = "_blank" class = "alert-message success">Top</strong></a>
 </div>
 
 <div id = "newmemes">
-    <a href = "/new.html" class = "alert-message danger">Latest memes</strong></a>
+    <a href = "https://www.twitter.com/memebase" target = "_blank" class = "alert-message danger">New</strong></a>
 </div>
-
-<section>
 
 <div class='container-fluid'>
-	
-<div id= "comments">
-		<h4>How to guide</h4>
-		<p>Create a meme by clicking any of the thumbnails on the left and then adding your 2 lines of comedy gold in the fields available.</p>
-		<p>When you click publish, your meme will show up in a list of images for that meme category as well as the <a href = "new.html">latest memes</a> list.</p>
-		<p>Click on your meme, or any meme you think is funny, and tweet it to your friends.
-			Tweeting works like voting, the more tweets a meme has, the more votes it gets.</p>
-		<p>Images with the most votes land up on the main page, otherwise known as the <a href = "index.html">top memes</a> page.
-			Be sure to vote for your own meme!</p>
-		<p>If you want to suggest a new meme or give some feedback, <a href="http://www.twitter.com/memebaseza">tweet us.</a></p>
-		<br><br>
-		<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://sd.asdf.com" data-via="memebaseza">Tweet</a>	
-</div>
-	
     <div class = 'sidebar'>
         <ul class = "media-grid" id = "meme-picker">
         </ul>
@@ -268,11 +232,10 @@ $(document).ready(function(){
 
     <div class = 'content'>
         <ul class = "media-grid" id = "meme-list">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://sd.asdf.com" data-via="memebaseza">Tweet</a>
         </ul>
-	</div>
+    </div>
 </div>
-
-</section>
 
 </body>
 </html>

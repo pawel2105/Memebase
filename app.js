@@ -1,18 +1,35 @@
-var fs  =require('fs');
+var fs = require('fs');
 var http = require('http');
 var mongo = require('mongodb');
 
-var db = new mongo.Db('memebasedb', new mongo.Server("mongodb://brand.magnate@gmail.com:p3rception@ds029317.mongolab.com", 29317));
-db.open();
+var db = new mongo.Db('memebase', new mongo.Server("127.0.0.1", 27017));
+db.open(function(err) {
+    if(err) {
+        console.log(err);
+        db.close();
+        process.exit(1);
+	}
+});
 
 server = http.createServer( function(req, res) {
-    fs.readFile('index.html', function(err, page) {
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.write(page);
-        res.end();
-    });
+
+	if (req.url === '/') {
+        	fs.readFile('index.html', function(err, page) {
+        		res.writeHead(200, {'Content-Type': 'text/html'});
+        		res.write(page);
+        		res.end();
+    		});
+	}
+	
+     else if (req.url == '/new.html') { 
+			fs.readFile('new.html', function(err, page) {
+        			res.writeHead(200, {'Content-Type': 'text/html'});
+        			res.write(page);
+        			res.end();
+    		});
+	}
 });
-server.listen(13309);
+server.listen(8080);
 
 // now.js code
 var everyone = require("now").initialize(server, {socketio: {'transports': ['xhr-polling']}});
@@ -34,7 +51,7 @@ everyone.now.publish = function(meme) {
 // retrieve the latest few memes of a name. If there is no name, retrieve a mixture
 everyone.now.getRecent = function(memeName) {
     var client = this;
-    console.log("retrieving");
+    console.log("New memes fetched");
     db.collection('memes', function(err, collection) {
         if(memeName == undefined) {
             collection.find( {}, { sort: [[ "date", "desc" ]], limit: 25 }).toArray( function(err, docs) {
@@ -42,7 +59,7 @@ everyone.now.getRecent = function(memeName) {
             });
         }
         else {
-            collection.find( {"name": memeName}, { sort: [[ "date", "desc" ]], limit: 25 }).toArray( function(err, docs) {
+            collection.find( {"name": memeName}, { sort: [[ "date", "desc" ]], limit: 50 }).toArray( function(err, docs) {
                 client.now.getContent(docs);
             });
         }
